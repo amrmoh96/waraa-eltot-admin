@@ -15,16 +15,16 @@
                 <button pButton icon="pi pi-plus" iconPos="left" label="Add Character"
                     class="p-button-rounded p-button-sm" routerLink="./create"></button>
             </div>
-            <p-table [value]="(characterService._Characters | async) || []" [paginator]="true" [rows]="5"
+            <p-table [value]="(characterService._Characters | async) || []" [paginator]="true" [rows]="25"
                 [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                [rowsPerPageOptions]="[5,10,20]">
+                [rowsPerPageOptions]="[25,50,100]">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>#</th>
                         <th>Name</th>
                         <th>Nick Name</th>
-                        <th>Intro</th>
+                        <!-- <th>Intro</th> -->
                         <th></th>
                     </tr>
                 </ng-template>
@@ -33,7 +33,7 @@
                         <td>{{character.id}}</td>
                         <td>{{character.firstname + ' ' + character.lastname}}</td>
                         <td>{{character.nickname? character.nickname : 'ــــــ'}}</td>
-                        <td>{{character.intro? character.intro : 'ــــــ'}}</td>
+                        <!-- <td>{{character.intro? character.intro : 'ــــــ'}}</td> -->
                         <td>
                             <div class="row-actions">
                                 <button pButton icon="pi pi-eye" iconPos="left"

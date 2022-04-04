@@ -1,21 +1,21 @@
 <div class="page">
     <div class="page-title">
-        <h2>News</h2>
+        <h2>Topic</h2>
     </div>
     <div class="page-content">
-        <div class="empty-area" *ngIf="news.length == 0">
+        <div class="empty-area" *ngIf="topic.length == 0">
             <span class="pi pi-file-excel"></span>
-            <p>No News</p>
-            <small>Click add news below to add the first news</small>
-            <button pButton icon="pi pi-plus" iconPos="left" label="Add News" class="p-button-rounded p-button-sm"
+            <p>No Topic</p>
+            <small>Click add topic below to add the first topic</small>
+            <button pButton icon="pi pi-plus" iconPos="left" label="Add Topic" class="p-button-rounded p-button-sm"
                 routerLink="./create"></button>
         </div>
-        <div *ngIf="news && news.length > 0">
+        <div *ngIf="topic && topic.length > 0">
             <div class="addnew-button-container">
-                <button pButton icon="pi pi-plus" iconPos="left" label="Add News" class="p-button-rounded p-button-sm"
+                <button pButton icon="pi pi-plus" iconPos="left" label="Add Topic" class="p-button-rounded p-button-sm"
                     routerLink="./create"></button>
             </div>
-            <p-table [value]="(newsService.$_news | async) || []" [paginator]="true" [rows]="25"
+            <p-table [value]="(topicService.$_topic | async) || []" [paginator]="true" [rows]="25"
                 [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [rowsPerPageOptions]="[25,50,100]">
@@ -23,23 +23,23 @@
                     <tr>
                         <th>#</th>
                         <th>Title</th>
-                        <!-- <th>Body</th> -->
+                        <th>Category</th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-news>
+                <ng-template pTemplate="body" let-topic>
                     <tr>
-                        <td>{{news.id}}</td>
-                        <td>{{news.title}}</td>
-                        <!-- <td>{{news.body}}</td> -->
+                        <td>{{topic.id}}</td>
+                        <td>{{topic.title}}</td>
+                        <td>{{topic.category}}</td>
                         <td>
                             <div class="row-actions">
                                 <button pButton icon="pi pi-eye" iconPos="left"
                                     class="p-button-rounded p-button-success p-button-sm"
-                                    routerLink="./view/{{news.id}}"></button>
+                                    routerLink="./view/{{topic.id}}"></button>
                                 <button pButton icon="pi pi-pencil" iconPos="left" class="p-button-rounded p-button-sm"
-                                    routerLink="./edit/{{news.id}}"></button>
-                                <button pButton icon="pi pi-trash" iconPos="left" (click)="deleteNews(news.id)"
+                                    routerLink="./edit/{{topic.id}}"></button>
+                                <button pButton icon="pi pi-trash" iconPos="left" (click)="deleteTopic(topic.id)"
                                     class="p-button-rounded p-button-danger p-button-sm"></button>
                             </div>
                         </td>

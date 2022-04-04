@@ -17,6 +17,10 @@ const routes: Routes = [
 	{
 		path: 'tags',
 		loadChildren: () => import('./modules/tags/tags.module').then((m) => m.TagsModule)
+	},
+	{
+		path: 'topic',
+		loadChildren: () => import('./modules/topic/topic.module').then((m) => m.TopicModule)
 	}
 	,
 	{
