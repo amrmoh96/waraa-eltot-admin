@@ -1,0 +1,16 @@
+<div class="full__media__container">
+    <i class="pi pi-times"
+        (click)="this.UtilityService.hideMedia()"></i>
+    <div class="full__media__container__content">
+        <div *ngIf="this.UtilityService.mediaObject.mediaType == 1">
+            <iframe [src]="this.UtilityService.iFrameSRC(UtilityService.mediaObject)"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        <div *ngIf="this.UtilityService.mediaObject.mediaType == 2">
+            <img [src]="imgApi+'/Media/GetMedia?id='+this.UtilityService.mediaObject.id" />
+        </div>
+    </div>
+</div>

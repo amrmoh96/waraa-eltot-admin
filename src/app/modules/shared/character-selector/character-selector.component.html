@@ -1,0 +1,13 @@
+<p-dialog header="Assign Character To Media" [(visible)]="display" [style]="{width: '50vw'}"
+    [contentStyle]="{'overflow':'unset'}" [modal]="true">
+    <p-dropdown [styleClass]="'dropdown-dialog'" (onChange)="dropdownChange($event)" [options]="characters"
+        [(ngModel)]="selectedCharacter" optionLabel="fullName">
+    </p-dropdown>
+    <div class="dialog-save-button">
+        <button pButton type="button" (click)="selectCharacter()" class="p-button-rounded p-button-sm p-button-success"
+            icon="pi pi-check" label="assign character"></button>
+    </div>
+</p-dialog>
+
+<button pButton type="button" (click)="showDialog()" class="p-button-rounded p-button-danger p-button-sm " icon="pi pi-user"
+    label="assign character"></button>

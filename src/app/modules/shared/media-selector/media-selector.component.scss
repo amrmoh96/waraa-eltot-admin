@@ -1,0 +1,15 @@
+.media__container {
+  height: 400px;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  .media__container__single {
+    margin-bottom: 1.5rem;
+    &.selected{
+        border: 2px solid #004eff;
+    }
+  }
+}

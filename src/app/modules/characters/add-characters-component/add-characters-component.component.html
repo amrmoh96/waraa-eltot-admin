@@ -1,0 +1,56 @@
+<div class="page">
+    <div class="page-title">
+        <h2 *ngIf="!isEdit">Add New Character</h2>
+        <h2 *ngIf="isEdit">Edit Character</h2>
+    </div>
+    <div class="page-content">
+        <form #characterForm="ngForm" (ngSubmit)="onSubmit(characterForm)"
+            [ngFormOptions]="{updateOn: 'blur'}">
+            <div class="names-group">
+                <div class="input-group">
+                    <label for="firstname">Fisrt Name</label>
+                    <input [class.ng-dirty]="isSubmitted && firstname.invalid" type="text" pInputText #firstname="ngModel" name="firstname"
+                        [(ngModel)]="character.firstname" required class="p-inputtext-sm" />
+                    <small class="p-error" *ngIf="isSubmitted && firstname.invalid">First name is required</small>
+                </div>
+                <div class="input-group">
+                    <label for="lastname">Last Name</label>
+                    <input [class.ng-dirty]="isSubmitted && lastname.invalid" type="text" pInputText #lastname="ngModel" name="lastname" [(ngModel)]="character.lastname"
+                        required class="p-inputtext-sm" />
+                    <small class="p-error" *ngIf="isSubmitted && lastname.invalid">Last name is required</small>
+                </div>
+                <div class="input-group">
+                    <label for="nickname">Nick Name</label>
+                    <input [class.ng-dirty]="isSubmitted && nickname.invalid" type="text" pInputText #nickname="ngModel" name="nickname" [(ngModel)]="character.nickname"
+                        required class="p-inputtext-sm" />
+                    <small class="p-error" *ngIf="isSubmitted && nickname.invalid">Nick name is required</small>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="intro">Intro</label>
+                <input [class.ng-dirty]="isSubmitted && intro.invalid" type="text" pInputText #intro="ngModel" name="intro" [(ngModel)]="character.intro" ngModel
+                    required class="p-inputtext-sm" />
+                <small class="p-error" *ngIf="isSubmitted && intro.invalid">Intro is required</small>
+            </div>
+            <div class="input-group">
+                <label for="about">About</label>
+                <textarea [class.ng-dirty]="isSubmitted && about.invalid" pInputTextarea #about="ngModel" rows="5" name="about" required
+                    [(ngModel)]="character.about"></textarea>
+                <small class="p-error" *ngIf="isSubmitted && about.invalid">About is required</small>
+            </div>
+            <div class="input-group radio-buttons-group">
+                <p-radioButton #gender="ngModel" label="Male" value={{1}} name="gender" [(ngModel)]="character.gender"
+                    ngModel>
+                </p-radioButton>
+                <p-radioButton #gender="ngModel" label="Female" value={{2}} name="gender" [(ngModel)]="character.gender"
+                    ngModel>
+                </p-radioButton>
+                <small class="p-error" *ngIf="isSubmitted && gender.invalid">Gender is required</small>
+            </div>
+            <div class="save-button">
+                <button pButton icon="pi pi-check" iconPos="left" label="Save"
+                    class="p-button-rounded p-button-sm p-button-success"></button>
+            </div>
+        </form>
+    </div>
+</div>

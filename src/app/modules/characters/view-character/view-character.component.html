@@ -1,0 +1,51 @@
+<div class="page">
+    <!-- <div class="page-title">
+        <h2>View Character</h2>
+    </div> -->
+    <div class="page-content">
+        <div class="empty-area"
+            *ngIf="!character.id">
+            <span class="pi pi-user-plus"></span>
+            <p>No Character</p>
+            <small>No Characters Were Founded With ID {{characterID}}</small>
+            <button pButton
+                icon="pi pi-users"
+                iconPos="left"
+                label="View All Characters"
+                class="p-button-rounded p-button-sm"
+                routerLink="../../characters"></button>
+        </div>
+        <div *ngIf="character.id"
+            class="character-page">
+            <div class="character-info">
+                <div class="name">
+                    <span *ngIf="characterImage == ''"
+                        class="pi pi-user"></span>
+                    <img *ngIf="characterImage != ''"
+                        src="{{characterImage}}"
+                        width="90" />
+                    <div>
+                        <h4>{{character.firstname}} {{character.lastname}} <small>({{character.nickname}})</small></h4>
+                        <p>{{character.intro}}</p>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button pButton
+                        icon="pi pi-pencil"
+                        iconPos="left"
+                        label="Edit"
+                        class="p-button-rounded p-button-success p-button-sm"
+                        routerLink="../../edit/{{character.id}}"></button>
+                    <app-media-selector (onMediaSelect)="assignMedia($event)"></app-media-selector>
+                </div>
+            </div>
+            <p>{{character.about}}</p>
+            <div class="media-tags"
+                *ngIf="characterMedia && characterMedia.length > 0">
+                <hr />
+                <h3>Media</h3>
+                <app-media-table [media]="characterMedia"></app-media-table>
+            </div>
+        </div>
+    </div>
+</div>

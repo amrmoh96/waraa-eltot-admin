@@ -1,0 +1,60 @@
+<div class="page">
+    <div class="page-title">
+        <h2 *ngIf="!isEdit">Add New Media</h2>
+        <h2 *ngIf="isEdit">Edit Media</h2>
+    </div>
+    <div class="page-content">
+        <form #mediaForm="ngForm" (ngSubmit)="onSubmit(mediaForm)" [ngFormOptions]="{updateOn: 'blur'}">
+            <div class="names-group">
+                <div class="input-group">
+                    <label for="title">Title</label>
+                    <input [class.ng-dirty]="isSubmitted && title.invalid" type="text" pInputText #title="ngModel"
+                        name="title" [(ngModel)]="media.title" required class="p-inputtext-sm" placeholder="title" />
+                    <small class="p-error" *ngIf="isSubmitted && title.invalid">First name is required</small>
+                </div>
+                <div class="input-group">
+                    <label for="mediaType">Media Type</label>
+                    <p-dropdown #mediaType="ngModel" [styleClass]="'dropdown-dialog'" name="mediaType"
+                        [options]="mediaTypes" [(ngModel)]="media.mediaType" optionLabel="name" optionValue="id">
+                    </p-dropdown>
+                    <!-- <input [class.ng-dirty]="isSubmitted && mediaUrl.invalid" type="url"
+                        placeholder="https://example.com" pattern="https://.*" pInputText #mediaUrl="ngModel"
+                        name="mediaUrl" [(ngModel)]="media.mediaUrl" required class="p-inputtext-sm" /> -->
+                    <small class="p-error" *ngIf="isSubmitted && mediaType.invalid">Media Type is required</small>
+                </div>
+                <div class="input-group" *ngIf="media.mediaType == 1">
+                    <label for="mediaUrl">Media Url</label>
+                    <input [class.ng-dirty]="isSubmitted && mediaUrl.invalid" type="url"
+                        placeholder="https://example.com" pattern="https://.*" pInputText #mediaUrl="ngModel"
+                        name="mediaUrl" [(ngModel)]="media.mediaUrl" required class="p-inputtext-sm" />
+                    <small class="p-error" *ngIf="isSubmitted && mediaUrl.invalid">url is required</small>
+                </div>
+                <div class="input-group" *ngIf="media.mediaType == 1">
+                    <label for="youtubeId">Youtube Id</label>
+                    <input [class.ng-dirty]="isSubmitted && youtubeId.invalid" type="text" pInputText
+                        #youtubeId="ngModel" name="youtubeId" [(ngModel)]="media.youtubeId" required
+                        class="p-inputtext-sm" placeholder="youtube id" />
+                    <small class="p-error" *ngIf="isSubmitted && youtubeId.invalid">youtube id is required</small>
+                </div>
+            </div>
+            <div class="input-group" *ngIf="media.mediaType == 2">
+                <label for="title">Image</label>
+                <input [class.ng-dirty]="isSubmitted && files.invalid" type="file" pInputText #files="ngModel"
+                    name="files" [(ngModel)]="media.files" required class="p-inputtext-sm" placeholder="files"
+                    (change)="imageUpload($event)" />
+                <small class="p-error" *ngIf="isSubmitted && files.invalid">Image is required</small>
+            </div>
+            <div class="input-group">
+                <label for="description">Description</label>
+                <textarea [class.ng-dirty]="isSubmitted && description.invalid" pInputTextarea #description="ngModel"
+                    rows="5" name="description" required [(ngModel)]="media.description"
+                    placeholder="media description"></textarea>
+                <small class="p-error" *ngIf="isSubmitted && description.invalid">About is required</small>
+            </div>
+            <div class="save-button">
+                <button pButton icon="pi pi-check" iconPos="left" label="Save"
+                    class="p-button-rounded p-button-sm p-button-success"></button>
+            </div>
+        </form>
+    </div>
+</div>

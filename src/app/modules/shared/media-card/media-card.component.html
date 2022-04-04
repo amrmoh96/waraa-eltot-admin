@@ -1,0 +1,15 @@
+<img [src]="imgApi+'/Media/GetMedia?id='+media.id"
+    width="{{width}}"
+    height="{{height}}"
+    style="object-fit: scale-down;"
+    *ngIf="media.mediaType == 2" />
+<div *ngIf="media.mediaType == 1">
+    <iframe [src]="this.UtilityService.iFrameSRC(UtilityService.mediaObject)"
+        title="YouTube video player"
+        frameborder="0"
+        width="{{width}}"
+        height="{{height}}"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</div>
+<p>{{media.id}} - {{media.title}}</p>

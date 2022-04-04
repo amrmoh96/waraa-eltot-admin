@@ -1,0 +1,20 @@
+<div class="page">
+    <div class="page-title">
+        <h2>Feedback</h2>
+    </div>
+    <div class="page-content">
+        <div class="feedback___single">
+            <div class="feedback___single__name">
+                <p>{{feedback?.firstname}} {{feedback?.lastname}}</p>
+                <ul>
+                    <li><i class="pi pi-calendar"></i> {{feedback?.creationDate | date:'medium'}}</li>
+                    <li><i class="pi pi-envelope"></i> {{feedback?.email}}</li>
+                    <li *ngIf="feedback?.mobilePhone"><i class="pi pi-phone"></i> {{feedback?.mobilePhone}}</li>
+                </ul>
+            </div>
+            <div class="feedback___single__body">
+                <p>{{feedback?.body}}</p>
+            </div>
+        </div>
+    </div>
+</div>

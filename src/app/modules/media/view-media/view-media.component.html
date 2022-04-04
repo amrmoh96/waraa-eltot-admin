@@ -1,0 +1,74 @@
+<div class="page">
+    <!-- <div class="page-title">
+        <h2>View Media</h2>
+    </div> -->
+    <div class="page-content">
+        <div class="empty-area"
+            *ngIf="!media.id">
+            <span class="pi pi-images"></span>
+            <p>No Media</p>
+            <small>No Medias Were Founded With ID {{mediaID}}</small>
+            <button pButton
+                icon="pi pi-images"
+                iconPos="left"
+                label="View All Media"
+                class="p-button-rounded p-button-sm"
+                routerLink="../../media"></button>
+        </div>
+        <div *ngIf="media.id"
+            class="character-page">
+            <div class="character-info">
+                <div class="name pointer">
+                    <!-- <span class="pi pi-images"></span> -->
+                    <img [src]="imgApi+'/Media/GetMedia?id='+media.id"
+                        width="90"
+                        height="50"
+                        style="object-fit: scale-down;"
+                        *ngIf="media.mediaType == 2"
+                        (click)="viewMedia()" />
+                    <div *ngIf="media.mediaType == 1">
+                        <div class="position-relative">
+                            <div class="position-absolute"
+                                (click)="viewMedia()"></div>
+                            <iframe [src]="this.UtilityService.iFrameSRC(UtilityService.mediaObject)"
+                                title="YouTube video player"
+                                frameborder="0"
+                                width="90"
+                                height="50"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <h4>{{media.title}}</h4>
+                </div>
+                <div class="action-buttons">
+                    <button pButton
+                        icon="pi pi-pencil"
+                        iconPos="left"
+                        label="Edit"
+                        class="p-button-rounded p-button-success p-button-sm"
+                        routerLink="../../edit/{{media.id}}"></button>
+                    <app-tags-selector (onTagSelect)="assignTag($event)"></app-tags-selector>
+                    <app-character-selector (onCharacterSelect)="assignCharacter($event)"></app-character-selector>
+                </div>
+            </div>
+            <div class="media-tags">
+                <ul>
+                    <li *ngFor="let tag of mediaTags">
+                        <p-tag [severity]="'info'">
+                            {{tag.tag1}}
+                        </p-tag>
+                    </li>
+                </ul>
+            </div>
+            <p>{{media.description}}</p>
+            <ul>
+                <li *ngFor="let char of characters">
+                    {{char.firstname}}
+                    <!-- <p-tag [severity]="'info'">
+                    </p-tag> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

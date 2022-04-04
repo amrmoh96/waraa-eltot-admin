@@ -1,0 +1,65 @@
+.character-page {
+  .character-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+    .name {
+      display: flex;
+      align-items: center;
+
+      span.pi {
+        font-size: 4rem;
+        padding-right: 15px;
+      }
+
+      img,
+      iframe {
+        margin-right: 1rem;
+      }
+
+
+      h4 {
+        margin-bottom: 5px;
+        font-size: 1.725rem;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #8f8f8f;
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+
+      button,
+      app-tags-selector,
+      app-character-selector {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  p {
+    font-size: .9rem;
+  }
+
+  .media-tags {
+    ul {
+      padding: 0;
+      display: flex;
+
+      li {
+        list-style: none;
+
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

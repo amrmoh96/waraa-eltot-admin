@@ -1,0 +1,22 @@
+<div class="page">
+    <div class="page-title">
+        <h2 *ngIf="!isEdit">Add News</h2>
+        <h2 *ngIf="isEdit">Edit News</h2>
+    </div>
+    <div class="page-content">
+        <form #tagsForm="ngForm" (ngSubmit)="onSubmit(tagsForm)" [ngFormOptions]="{updateOn: 'blur'}">
+            <div class="names-group">
+                <div class="input-group">
+                    <label for="title">Tag</label>
+                    <input [class.ng-dirty]="isSubmitted && title.invalid" type="text" pInputText #title="ngModel"
+                        name="title" [(ngModel)]="tag.tag1" required class="p-inputtext-sm" />
+                    <small class="p-error" *ngIf="isSubmitted && title.invalid">Title is required</small>
+                </div>
+            </div>
+            <div class="save-button">
+                <button pButton icon="pi pi-check" iconPos="left" label="Save"
+                    class="p-button-rounded p-button-sm p-button-success"></button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="page">
+    <div class="page-title">
+        <h2>Tags</h2>
+    </div>
+    <div class="page-content">
+        <div class="empty-area" *ngIf="tags.length == 0">
+            <span class="pi pi-tags"></span>
+            <p>No Tags</p>
+            <small>Click add tags below to add the first tag</small>
+            <button pButton icon="pi pi-plus" iconPos="left" label="Add News" class="p-button-rounded p-button-sm"
+                routerLink="./create"></button>
+        </div>
+        <div *ngIf="tags && tags.length > 0">
+            <!-- <div class="addnew-button-container">
+                <button pButton icon="pi pi-plus" iconPos="left" label="Add Tags" class="p-button-rounded p-button-sm"
+                    routerLink="./create"></button>
+            </div> -->
+            <p-table [value]="(tagService.$_tags | async) || []" [paginator]="true" [rows]="5"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [rowsPerPageOptions]="[5,10,20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>#</th>
+                        <th>tag</th>
+                        <!-- <th></th> -->
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-tag>
+                    <tr>
+                        <td>{{tag.id}}</td>
+                        <td>{{tag.tag1}}</td>
+                        <!-- <td>
+                            <div class="row-actions">
+                                <button pButton icon="pi pi-pencil" iconPos="left" class="p-button-rounded p-button-sm"
+                                    routerLink="./edit/{{tag.id}}"></button>
+                                <button pButton icon="pi pi-trash" iconPos="left" (click)="deleteTag(tag.id)"
+                                    class="p-button-rounded p-button-danger p-button-sm"></button>
+                            </div>
+                        </td> -->
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<p-dialog header="Assign Media To Character"
+    [(visible)]="display"
+    [style]="{width: '50vw'}"
+    [contentStyle]="{'overflow':'unset'}"
+    [modal]="true">
+    <div class="media__container">
+        <div class="media__container__single"
+            *ngFor="let m of media"
+            [class.selected]="selectedMedia.id == m.id"
+            (click)="selectMedia(m)">
+            <app-media-card [media]="m"
+                [width]="150"
+                [height]="150"></app-media-card>
+        </div>
+    </div>
+    <div class="dialog-save-button">
+        <button pButton
+            type="button"
+            (click)="emitMedia()"
+            class="p-button-rounded p-button-sm p-button-success"
+            icon="pi pi-check"
+            label="assign media"></button>
+    </div>
+</p-dialog>
+
+<button pButton
+    type="button"
+    (click)="showDialog()"
+    class="p-button-rounded p-button-sm "
+    icon="pi pi-images"
+    label="assign media"></button>

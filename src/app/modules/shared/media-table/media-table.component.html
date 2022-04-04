@@ -1,0 +1,43 @@
+<p-table [value]="media"
+    [paginator]="false"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5,10,20]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>#</th>
+            <th>media</th>
+            <th>Name</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body"
+        let-media>
+        <tr>
+            <td>{{media.id}}</td>
+            <td *ngIf="media.mediaType == 2"
+                (click)="viewMedia(media)"
+                class="pointer">
+                <img [src]="imgApi+'/Media/GetMedia?id='+media.id"
+                    width="90"
+                    height="50"
+                    style="object-fit: scale-down;" />
+            </td>
+            <td *ngIf="media.mediaType == 1"
+                class="pointer">
+                <div class="position-relative">
+                    <div class="position-absolute"
+                        (click)="viewMedia(media)"></div>
+                    <iframe [src]="this.UtilityService.iFrameSRC(media)"
+                        title="YouTube video player"
+                        frameborder="0"
+                        width="90"
+                        height="50"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </td>
+            <td>{{media.title}}</td>
+        </tr>
+    </ng-template>
+</p-table>

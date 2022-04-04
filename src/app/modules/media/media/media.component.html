@@ -1,0 +1,94 @@
+<div class="page">
+    <div class="page-title">
+        <h2>Media</h2>
+    </div>
+    <div class="page-content">
+        <div class="empty-area"
+            *ngIf="media.length == 0">
+            <span class="pi pi-images"></span>
+            <p>No Media</p>
+            <small>Click add media below to add the first media</small>
+            <button pButton
+                icon="pi pi-plus"
+                iconPos="left"
+                label="Add Media"
+                class="p-button-rounded p-button-sm"
+                routerLink="./create"></button>
+        </div>
+        <div *ngIf="media && media.length > 0">
+            <div class="addnew-button-container">
+                <button pButton
+                    icon="pi pi-plus"
+                    iconPos="left"
+                    label="Add Media"
+                    class="p-button-rounded p-button-sm"
+                    routerLink="./create"></button>
+            </div>
+            <p-table [value]="(mediaService.$_media | async) || []"
+                [paginator]="true"
+                [rows]="5"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [rowsPerPageOptions]="[5,10,20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>#</th>
+                        <th>media</th>
+                        <th>Title</th>
+                        <th>Media Type</th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body"
+                    let-media>
+                    <tr>
+                        <td>{{media.id}}</td>
+                        <td *ngIf="media.mediaType == 2"
+                            (click)="viewMedia(media)"
+                            class="pointer">
+                            <img [src]="imgApi+'/Media/GetMedia?id='+media.id"
+                                width="90"
+                                height="50"
+                                style="object-fit: scale-down;" />
+                        </td>
+                        <td *ngIf="media.mediaType == 1"
+                            class="pointer">
+                            <div class="position-relative">
+                                <div class="position-absolute"
+                                    (click)="viewMedia(media)"></div>
+                                <iframe [src]="this.UtilityService.iFrameSRC(media)"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    width="90"
+                                    height="50"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </td>
+                        <td>{{media.title}}</td>
+                        <td>{{media.mediaType? (media.mediaType == 1?'Video':'Image') : '-'}}</td>
+                        <td>
+                            <div class="row-actions">
+                                <button pButton
+                                    icon="pi pi-eye"
+                                    iconPos="left"
+                                    class="p-button-rounded p-button-success p-button-sm"
+                                    routerLink="./view/{{media.id}}"></button>
+                                <button pButton
+                                    icon="pi pi-pencil"
+                                    iconPos="left"
+                                    class="p-button-rounded p-button-sm"
+                                    routerLink="./edit/{{media.id}}"></button>
+                                <button pButton
+                                    icon="pi pi-trash"
+                                    iconPos="left"
+                                    (click)="deleteMedia(media.id)"
+                                    class="p-button-rounded p-button-danger p-button-sm"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

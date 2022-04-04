@@ -1,0 +1,27 @@
+<div class="page">
+    <div class="page-content">
+        <div class="empty-area" *ngIf="!news.id">
+            <span class="pi pi-globe"></span>
+            <p>No News</p>
+            <small>No News Were Founded With ID {{newsID}}</small>
+            <button pButton icon="pi pi-users" iconPos="left" label="View All Media"
+                class="p-button-rounded p-button-sm" routerLink="../../news"></button>
+        </div>
+        <div *ngIf="news.id" class="character-page">
+            <div class="character-info">
+                <!-- <span class="pi pi-user"></span> -->
+                <div class="name">
+                    <h4>{{news.title}}</h4>
+                    <!-- <p>{{character.intro}}</p> -->
+                </div>
+                <div class="action-buttons">
+                    <button pButton icon="pi pi-pencil" iconPos="left" label="Edit"
+                        class="p-button-rounded p-button-success p-button-sm"
+                        routerLink="../../edit/{{news.id}}"></button>
+                    <app-media-selector (onMediaSelect)="assignMedia($event)"></app-media-selector>
+                </div>
+            </div>
+            <p>{{news.body}}</p>
+        </div>
+    </div>
+</div>

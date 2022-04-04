@@ -1,0 +1,12 @@
+<p-dialog header="Assign Tag To Media" [(visible)]="display" [style]="{width: '50vw'}"
+    [contentStyle]="{'overflow':'unset'}" [modal]="true">
+    <p-dropdown [styleClass]="'dropdown-dialog'" (onChange)="dropdownChange($event)" [options]="tags" [(ngModel)]="selectedTag" optionLabel="tag1">
+    </p-dropdown>
+    <div class="dialog-save-button">
+        <button pButton type="button" (click)="selectTag()" class="p-button-rounded p-button-sm p-button-success"
+            icon="pi pi-check" label="assign tag"></button>
+    </div>
+</p-dialog>
+
+<button pButton type="button" (click)="showDialog()" class="p-button-rounded p-button-sm " icon="pi pi-tag"
+    label="assign tag"></button>
